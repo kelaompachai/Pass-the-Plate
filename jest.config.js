@@ -1,10 +1,9 @@
+// const { TextEncoder, TextDecoder } = require('util');
+
 module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx}'],
   coverageDirectory: 'coverage',
-  testEnvironment: 'jsdom',
+  testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  // transform: {
-  //   '^.+\\.jsx?$': 'babel-jest',
-  // },
 };

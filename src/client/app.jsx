@@ -46,53 +46,53 @@ function App() {
   }
 
   // populate listings and myListings pieces of state with information from database
-  useEffect(() => {
-    fetch('/listings')
-      .then((data) => data.json())
-      .then((data) => {
-        // set listings to the data that comes back
-        setListings(data);
+  // useEffect(() => {
+  //   fetch('/listings')
+  //     .then((data) => data.json())
+  //     .then((data) => {
+  //       // set listings to the data that comes back
+  //       setListings(data);
 
-        // cull the listings that come back for the user who is currently logged in
-        // do this by first getting the value on the username cookie and then filtering through
-        // the array of data
+  //       // cull the listings that come back for the user who is currently logged in
+  //       // do this by first getting the value on the username cookie and then filtering through
+  //       // the array of data
 
-        // create an array where each individual cookie is an element
-        const cookies = [];
-        let result = '';
-        for (let i = 0; i < document.cookie.length; i += 1) {
-          if (document.cookie[i] !== ' ') {
-            result += document.cookie[i];
-          } else {
-            cookies.push(result);
-            result = '';
-          }
-        }
+  //       // create an array where each individual cookie is an element
+  //       const cookies = [];
+  //       let result = '';
+  //       for (let i = 0; i < document.cookie.length; i += 1) {
+  //         if (document.cookie[i] !== ' ') {
+  //           result += document.cookie[i];
+  //         } else {
+  //           cookies.push(result);
+  //           result = '';
+  //         }
+  //       }
 
-        // making last result value consistent for below cache method
-        result += ';';
-        cookies.push(result);
+  //       // making last result value consistent for below cache method
+  //       result += ';';
+  //       cookies.push(result);
 
-        // creating cookie cache
-        // each cookie is a property on the object
-        const cache = {};
-        for (let i = 0; i < cookies.length; i += 1) {
-          const index = cookies[i].indexOf('=');
-          cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1, -1);
-        }
+  //       // creating cookie cache
+  //       // each cookie is a property on the object
+  //       const cache = {};
+  //       for (let i = 0; i < cookies.length; i += 1) {
+  //         const index = cookies[i].indexOf('=');
+  //         cache[cookies[i].slice(0, index)] = cookies[i].slice(index + 1, -1);
+  //       }
 
-        // pull out the value of the username cookie
-        const { username } = cache;
+  //       // pull out the value of the username cookie
+  //       const { username } = cache;
 
-        // create myListings array by filtering through listings data and set it to state
-        const newMyListings = [];
-        data.forEach((el) => {
-          if (el.username === username) newMyListings.push(el);
-        });
-        setMyListings(newMyListings);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  //       // create myListings array by filtering through listings data and set it to state
+  //       const newMyListings = [];
+  //       data.forEach((el) => {
+  //         if (el.username === username) newMyListings.push(el);
+  //       });
+  //       setMyListings(newMyListings);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <>
