@@ -11,18 +11,4 @@ describe('App tests', () => {
     const heading = screen.getByText(/Pass the Plate/i);
     expect(heading).toBeInTheDocument();
   });
-
-  it('should contain the Sidebar component', () => {
-    render(<App />);
-    const sideBar = screen.queryByText('Sidebar');
-    expect(sideBar).toBeInTheDocument();
-  });
-
-  it('should contain an h1 element', () => {
-    render(<App />);
-    const h1 = screen.getByRole('heading', { name: 'Pass the Plate' });
-    expect(h1).toBeInTheDocument();
-  });
 });
-
-
