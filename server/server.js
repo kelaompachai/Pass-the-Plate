@@ -14,9 +14,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.post('/signup', userController.createUser, (req, res) => {
-  res.status(200).end();
+  res.status(200).redirect('/login');
   console.log('new user request body in server: ', req.body);
 });
+
 
 
 app.post('/login', userController.verifyUser, (req, res) => {
@@ -40,7 +41,12 @@ app.get('/listings', userController.findListings, (req, res) => {
 
 app.post('/postlisting', userController.postListing, (req, res) => {
   console.log('successfully posted listing in database');
-  res.send(200);
+  res.status(200).redirect('/login');
+});
+
+app.get('/login', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../dist/home.html'));
+  // console.log('new user request body in server: ', req.body);
 });
 
 app.post('/postcomment', userController.postComment, (req, res) => {

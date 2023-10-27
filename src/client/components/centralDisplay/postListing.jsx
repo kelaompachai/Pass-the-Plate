@@ -16,6 +16,10 @@ function PostListing() {
           Description:
           <input type="text-area" name="listing_body" />
         </label>
+        <label>
+          Zipcode:
+          <input type="text-area" name="zipcode" />
+        </label>
         <button type="submit" formAction="/postlisting">Post</button>
       </form>
     </div>

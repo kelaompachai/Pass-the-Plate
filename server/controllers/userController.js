@@ -41,7 +41,9 @@ let recentData;
 
 userController.findListings = (req, res, next) => {
   console.log('made it to findListings controller');
-  const queryString = `SELECT l.*, u.username FROM listing l inner join users u on u.id = l.user_id WHERE l.zipcode = ${req.cookies.zipcode}`;
+  // eslint-disable-next-line max-len
+  // const queryString = `SELECT l.*, u.username FROM listing l inner join users u on u.id = l.user_id WHERE l.zipcode = ${req.cookies.zipcode}`;
+  const queryString = 'SELECT * FROM listing';
   // testing route handler for finding listing based on zipcode
 
   db.query(queryString)
@@ -61,7 +63,7 @@ let listingReqBod;
 userController.postListing = (req, res, next) => {
   listingReqBod = req.body;
   console.log('posting a listing thru postman: ', listingReqBod);
-  const queryString = `INSERT INTO listing (title, listing_body) VALUES ('${listingReqBod.title}', '${listingReqBod.listing_body}')`;
+  const queryString = `INSERT INTO listing (title, listing_body, zipcode) VALUES ('${listingReqBod.title}', '${listingReqBod.listing_body}', '${listingReqBod.zipcode}')`;
   db.query(queryString)
     .then((data) => next())
     .catch((err) => console.error('Error in postListing middleware: ', err));
