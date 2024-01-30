@@ -80,11 +80,11 @@ userController.postComment = (req, res, next) => {
 
 userController.getComments = (req, res, next) => {
   console.log('made it to getComments controller');
-  const queryString = `SELECT comment_body FROM comment WHERE listing_id = ${req.cookies.id}`; // testing route handler for finding listing based on zipcode
+  const queryString = 'SELECT comment_body FROM comment;'; // WHERE listing_id = ${req.cookies.id}`; // testing route handler for finding listing based on zipcode
 
   db.query(queryString)
     .then((data) => {
-      // console.log('data from listings', data.rows)
+      console.log('data from listings', data.rows);
 
       res.locals.comments = data.rows;
       return next();

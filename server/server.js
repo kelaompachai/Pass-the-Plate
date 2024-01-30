@@ -55,7 +55,7 @@ app.post('/postcomment', userController.postComment, (req, res) => {
 });
 
 app.get('/comments', userController.getComments, (req, res) => {
-  res.send(200).json(res.locals.comments);
+  res.status(200).json(res.locals.comments);
 });
 
 app.use((err, req, res, next) => {
