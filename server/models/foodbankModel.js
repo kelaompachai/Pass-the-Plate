@@ -1,6 +1,8 @@
-const { Pool } = require('pg');
 require('dotenv').config();
 const { TextEncoder, TextDecoder } = require('util');
+Object.assign(global, {TextDecoder, TextEncoder});
+
+const { Pool } = require('pg');
 
 const PG_URI = process.env.DATABASE_URI;
 console.log('PG_URI:', PG_URI);
