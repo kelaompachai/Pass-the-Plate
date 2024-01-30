@@ -11,10 +11,11 @@ userController.verifyUser = (req, res, next) => {
   // console.log("request body in Originalcontroller: ", req.body)
   console.log(req.body);
   userReqBod = req.body;
+  console.log('userReqBod: ', userReqBod);
   // res.redirect('/redirect')
   // find user in database
   // console.log('testing userReqBod: ', userReqBod)
-  const queryString = `SELECT username, password, zipcode, id FROM users WHERE username = '${userReqBod.username}' AND password = '${userReqBod.password}' AND zipcode = ${userReqBod.zipcode}`;
+  const queryString = `SELECT username, password, zipcode, id FROM users WHERE username = '${userReqBod.username}' AND password = '${userReqBod.password}' AND zipcode = '${userReqBod.zipcode}'`;
   db.query(queryString)
     .then((data) => {
       // console.log('request body in verifyUser controller: ', userReqBod)
@@ -103,10 +104,12 @@ userController.createUser = async (req, res, next) => {
     VALUES ($1, $2, $3);
     `;
     const result = await db.query(text, params);
+    console.log('userController.createUser= ~ result:', result);
     // res.locals.createUser = result;
     // res.redirect('/signup');
     return next();
   } catch (error) {
+    console.log('entered catch block');
     return next({
       log: `userController.createUser ERORR: ${error}`,
       message: {

@@ -13,11 +13,12 @@ app.use(bodyParser.urlencoded());
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(express.static('dist'));
+
 app.post('/signup', userController.createUser, (req, res) => {
   res.status(200).redirect('/login');
   console.log('new user request body in server: ', req.body);
 });
-
 
 
 app.post('/login', userController.verifyUser, (req, res) => {
@@ -55,6 +56,24 @@ app.post('/postcomment', userController.postComment, (req, res) => {
 
 app.get('/comments', userController.getComments, (req, res) => {
   res.send(200).json(res.locals.comments);
+});
+
+app.use((err, req, res, next) => {
+  const defaultError = {
+    log: 'An error occurred',
+    status: 500,
+    message: {
+      err: 'Watch out for those errors',
+    },
+  };
+
+  const realError = {
+    ...defaultError,
+    ...err,
+  };
+
+  console.log(realError);
+  res.status(realError.status).send(realError.message.err);
 });
 
 app.listen(1234, () => {
