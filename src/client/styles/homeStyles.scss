@@ -43,6 +43,7 @@ button {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  min-width: 110px;
 }
 
 .container {
@@ -61,13 +62,12 @@ button {
   align-items: center;
   justify-content: space-around;
   font-size: x-large;
-  border: solid 3px red;
   background-color: aliceblue;
   border-radius: 5px;
   margin-left: 10px;
   margin-top: 10px;
   height: 175px;
-  box-shadow: 10px 5px 5px darkmagenta;
+  box-shadow: 2px 2px 2px $text-color;
 }
 
 .sidebar {
